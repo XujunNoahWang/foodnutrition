@@ -1,23 +1,24 @@
 # 智能食物营养分析师
 
-版本：0.1.2
+版本：0.1.5
 
 一个基于AI的食物营养分析应用，可以识别食物图片并提供详细的营养信息分析。
 
 ## 功能特点
 
-- 🍽️ **智能食物识别**: 使用Google Gemini AI识别图片中的食物
+- 🍽️ **智能食物识别**: 使用Google Gemini 2.5 Flash-Lite AI识别图片中的食物
 - 📊 **营养分析**: 提供嘌呤、胆固醇、饱和脂肪、糖分、热量、蛋白质等营养信息
 - 🎯 **健康建议**: 根据营养数据提供个性化的健康建议
 - 📱 **现代化UI**: 响应式设计，支持暗色/亮色主题切换
 - 🔄 **实时分析**: 快速分析，即时显示结果
+- 🗃️ **权威数据**: 基于权威嘌呤数据库进行精确分析
 
 ## 技术栈
 
 - **后端**: Python Flask
-- **AI模型**: Google Gemini 1.5 Flash
+- **AI模型**: Google Gemini 2.5 Flash-Lite Preview 06-17
 - **前端**: HTML5, CSS3, JavaScript (Vanilla)
-- **数据**: 权威嘌呤数据库
+- **数据**: 权威嘌呤数据库 (purinefoods.json)
 
 ## 安装说明
 
@@ -63,15 +64,8 @@ python start_app.py
 python app.py
 ```
 
-2. 启动前端服务（可选，如果使用Flask静态文件服务则不需要）
-```bash
-cd static
-python -m http.server 8080
-```
-
-3. 访问应用
-- 前端: http://localhost:8080
-- 后端API: http://localhost:5000
+2. 访问应用
+- 应用地址: http://localhost:5000
 
 ## 项目结构
 
@@ -79,6 +73,7 @@ python -m http.server 8080
 foodnutrition/
 ├── app.py                 # Flask后端应用
 ├── start_app.py           # 一键启动脚本
+├── setup.py               # 项目设置脚本
 ├── requirements.txt       # Python依赖
 ├── .env                   # 环境变量配置
 ├── purinefoods.json       # 权威嘌呤数据库
@@ -86,6 +81,7 @@ foodnutrition/
 │   ├── index.html         # 主页面
 │   ├── script.js          # JavaScript逻辑
 │   └── style.css          # 样式文件
+├── .gitignore             # Git忽略文件
 └── README.md              # 项目文档
 ```
 
@@ -128,8 +124,8 @@ foodnutrition/
    - 创建新的API Key
 
 2. 配置环境变量
-   - 复制 `.env.example` 为 `.env`
-   - 填入你的API Key
+   - 创建 `.env` 文件
+   - 填入你的API Key: `GOOGLE_API_KEY=your_api_key_here`
 
 ### 本地开发
 
@@ -145,8 +141,18 @@ python app.py
 
 3. 访问 http://localhost:5000
 
+## 依赖包
+
+- Flask: Web框架
+- flask-cors: 跨域支持
+- Pillow: 图像处理
+- python-dotenv: 环境变量管理
+- google-generativeai: Google AI API客户端
+- psutil: 系统监控
+
 ## 版本历史
 
+- v0.1.5：升级到Gemini 2.5 Flash-Lite Preview模型，优化项目结构
 - v0.1.2：优化表格字体层级与视觉层次
 - v0.1.1：Restructure project to follow Python best practices
 - v0.1.0：Food Nutrition Analysis App with improved startup script
