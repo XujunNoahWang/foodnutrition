@@ -27,7 +27,7 @@ else:
 
 genai.configure(api_key=api_key)
 # 使用最新的 Gemini 1.5 Flash 模型，支持图像和文本
-model = genai.GenerativeModel('gemini-1.5-flash')
+model = genai.GenerativeModel('gemini-2.5-flash-lite-preview-06-17')
 
 # 加载权威嘌呤数据
 def load_purine_data():
@@ -133,7 +133,14 @@ def analyze_food():
 请只返回JSON数据，不要包含其他文字。
 """
 
-        response = model.generate_content([prompt_text, img])
+        # 优化图片为webp格式
+        optimized_bytes = io.BytesIO()
+        img = img.convert('RGB')
+        img.save(optimized_bytes, format='WEBP', quality=75, method=6)
+        optimized_bytes.seek(0)
+        optimized_img = Image.open(optimized_bytes)
+
+        response = model.generate_content([prompt_text, optimized_img])
         response_text = response.text.strip()
         
         # 尝试解析JSON响应

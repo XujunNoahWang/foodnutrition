@@ -116,6 +116,9 @@ body {
     margin: 0 auto;
     padding: 2rem;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* 上传页面 */
@@ -209,16 +212,24 @@ body {
 
 /* 分析页面 */
 .analysis-page {
-    display: grid;
-    grid-template-columns: 540px 1fr;
-    gap: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 3rem;
     min-height: 70vh;
-    padding: 0;
+    width: 100%;
+    margin-left: 480px;
 }
 
-/* 悬浮图片 */
+/* 悬浮图片固定在左侧 */
 .floating-image {
-    position: static;
+    position: fixed;
+    top: 90px;
+    left: calc(50% - 650px);
+    width: 420px;
+    min-width: 420px;
+    max-width: 420px;
     background: none;
     border-radius: 0;
     box-shadow: none;
@@ -227,11 +238,12 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 10;
 }
 .floating-image img {
-    width: 520px;
-    height: 340px;
-    max-width: 90vw;
+    width: 100%;
+    height: 270px;
+    max-width: 100%;
     max-height: 60vh;
     object-fit: cover;
     border-radius: var(--radius-large);
@@ -270,6 +282,9 @@ body {
 
 /* 结果容器 */
 .results-container {
+    flex: 1;
+    min-width: 600px;
+    max-width: 900px;
     background: var(--bg-primary);
 }
 
@@ -331,11 +346,17 @@ body {
 }
 
 .results-header h2 {
-    font-size: 2.4rem;
+    font-size: 2rem;
     font-weight: 700;
     color: var(--text-primary);
     margin-bottom: 0.5rem;
     letter-spacing: -0.02em;
+}
+
+.results-header h2 .subtitle {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--text-secondary);
 }
 
 .results-subtitle {
@@ -350,13 +371,11 @@ body {
     padding: 2.2rem 2rem 2rem 2rem;
     margin-bottom: 2.2rem;
     box-shadow: var(--shadow-light);
-    max-width: 900px;
-    margin-left: 0;
-    margin-right: 0;
+    width: 100%;
 }
 .nutrition-table {
     width: 100%;
-    min-width: 600px;
+    min-width: 800px;
     font-size: 0.9rem;
 }
 .nutrition-table th,
@@ -440,11 +459,10 @@ body {
 .detailed-suggestions {
     background: var(--bg-secondary);
     border-radius: var(--radius-large);
-    padding: 2.2rem 2rem;
+    padding: 2.2rem 2rem 2rem 2rem;
     margin-bottom: 2rem;
-    box-shadow: var(--shadow-medium);
-    font-size: 1.08rem;
-    max-width: 900px;
+    box-shadow: var(--shadow-light);
+    width: 100%;
 }
 
 .detailed-suggestions h3 {
@@ -597,9 +615,27 @@ body {
 .audience-selector-container, .audience-label, .audience-selector { display: none !important; }
 
 /* 响应式设计 */
-@media (max-width: 1100px) {
+@media (max-width: 1400px) {
+    .floating-image {
+        left: 40px;
+    }
     .analysis-page {
-        grid-template-columns: 1fr;
+        margin-left: 480px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .floating-image {
+        position: static;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        top: auto;
+        left: auto;
+    }
+    .analysis-page {
+        margin-left: 0;
+        flex-direction: column;
         gap: 1.2rem;
     }
     .nutrition-table-container, .detailed-suggestions {

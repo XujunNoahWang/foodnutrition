@@ -24,6 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let lastNutritionData = null;
 
     let selectedFile = null;
+    let analyzeTimerInterval = null;
+    let analyzeTimerStart = null;
 
     // 初始化
     initEventListeners();
@@ -291,7 +293,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function showAnalysisPage() {
         uploadPage.style.display = 'none';
-        analysisPage.style.display = 'grid';
+        analysisPage.style.display = 'flex'; // 保持左右结构
         showLoadingState();
     }
 
@@ -299,12 +301,34 @@ document.addEventListener('DOMContentLoaded', () => {
         loadingState.style.display = 'flex';
         analysisResults.style.display = 'none';
         errorState.style.display = 'none';
+        // 启动计时器
+        const timerEl = document.getElementById('analyzeTimer');
+        const tipEl = document.getElementById('analyzeTip');
+        if (timerEl) {
+            timerEl.style.display = '';
+            timerEl.textContent = '用时：0.0秒';
+            analyzeTimerStart = Date.now();
+            if (analyzeTimerInterval) clearInterval(analyzeTimerInterval);
+            analyzeTimerInterval = setInterval(() => {
+                const elapsed = ((Date.now() - analyzeTimerStart) / 1000).toFixed(1);
+                timerEl.textContent = `用时：${elapsed}秒`;
+            }, 100);
+        }
+        if (tipEl) tipEl.style.display = '';
     }
 
     function showResults() {
         loadingState.style.display = 'none';
         analysisResults.style.display = 'block';
         errorState.style.display = 'none';
+        // 停止计时器
+        const timerEl = document.getElementById('analyzeTimer');
+        const tipEl = document.getElementById('analyzeTip');
+        if (timerEl) {
+            timerEl.style.display = 'none';
+            if (analyzeTimerInterval) clearInterval(analyzeTimerInterval);
+        }
+        if (tipEl) tipEl.style.display = 'none';
     }
 
     function showError(message) {
@@ -312,6 +336,14 @@ document.addEventListener('DOMContentLoaded', () => {
         analysisResults.style.display = 'none';
         errorState.style.display = 'flex';
         errorMessage.innerHTML = message; // 使用innerHTML处理HTML内容
+        // 停止计时器
+        const timerEl = document.getElementById('analyzeTimer');
+        const tipEl = document.getElementById('analyzeTip');
+        if (timerEl) {
+            timerEl.style.display = 'none';
+            if (analyzeTimerInterval) clearInterval(analyzeTimerInterval);
+        }
+        if (tipEl) tipEl.style.display = 'none';
     }
 
     async function analyzeImage() {
@@ -327,13 +359,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const backendHost = window.location.hostname;
         const backendUrl = `http://${backendHost}:5000/analyze`;
 
+        let errorDetail = '';
         try {
             const response = await fetch(backendUrl, {
                 method: 'POST',
                 body: formData
             });
 
-            let errorDetail = '';
             if (!response.ok) {
                 try {
                     const errorData = await response.json();

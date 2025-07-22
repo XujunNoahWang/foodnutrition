@@ -25,9 +25,6 @@
             <!-- 初始上传页面 -->
             <section class="upload-page" id="uploadPage">
                 <div class="upload-hero">
-                    <div class="upload-icon">
-                        <i class="fas fa-camera"></i>
-                    </div>
                     <h2>上传食物图片开始分析</h2>
                     <p>AI 将识别食物并提供详细的营养成分分析</p>
                     
@@ -62,13 +59,14 @@
                         </div>
                         <h3>AI 正在分析中...</h3>
                         <p>正在识别食物种类并计算营养成分</p>
+                        <div id="analyzeTimer" style="margin-top:0.5rem;font-size:1.1rem;color:#007aff;display:none;">用时：0.0秒</div>
+                        <div id="analyzeTip" style="margin-top:0.2rem;font-size:0.98rem;color:#888;display:none;">因调用Google AI接口，识别通常需要约20秒，请耐心等待</div>
                     </div>
 
                     <!-- 分析结果 -->
                     <div class="analysis-results" id="analysisResults" style="display: none;">
                         <div class="results-header">
-                            <h2>营养分析结果</h2>
-                            <span class="results-subtitle">每100克可食部分</span>
+                            <h2>营养分析结果<span class="subtitle">（每100克可食部分）</span></h2>
                         </div>
                         <!-- 直接放表格 -->
                         <div class="nutrition-table-container">
