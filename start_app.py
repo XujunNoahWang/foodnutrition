@@ -11,7 +11,7 @@ BACKEND_PORT = 5000
 FRONTEND_PORT = 8080
 
 backend_dir = os.path.dirname(os.path.abspath(__file__))
-frontend_dir = os.path.join(backend_dir, 'public')
+frontend_dir = os.path.join(backend_dir, 'static')
 
 def is_port_in_use(port):
     """检查端口是否被占用"""

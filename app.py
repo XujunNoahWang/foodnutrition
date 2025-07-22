@@ -12,7 +12,7 @@ import difflib
 env_path = os.path.join(os.path.dirname(__file__), '.env')
 load_dotenv(env_path)
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', static_url_path='')
 CORS(app)
 
 # 获取 API Key 并添加调试信息
@@ -81,6 +81,10 @@ def get_protein_level_emoji(level):
         'low': '⚠️'   # 低蛋白需要注意
     }
     return emoji_map.get(level, '⚪')
+
+@app.route('/')
+def index():
+    return app.send_static_file('index.html')
 
 @app.route('/analyze', methods=['POST'])
 def analyze_food():
