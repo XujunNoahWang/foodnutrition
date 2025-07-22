@@ -1,0 +1,6 @@
+Flask
+flask-cors
+Pillow
+python-dotenv
+google-generativeai>=0.8.0
+psutil 

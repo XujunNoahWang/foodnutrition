@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能食物营养分析师</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body data-theme="light">
+    <div class="app-container">
+        <!-- 简化的头部区域 -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1>智能食物营养分析师</h1>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- 主要内容区域 -->
+        <main class="main-content">
+            <!-- 初始上传页面 -->
+            <section class="upload-page" id="uploadPage">
+                <div class="upload-hero">
+                    <div class="upload-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h2>上传食物图片开始分析</h2>
+                    <p>AI 将识别食物并提供详细的营养成分分析</p>
+                    
+                    <!-- 上传区域，确保无form标签 -->
+                    <div class="upload-area" id="uploadArea">
+                        <input type="file" id="imageUpload" accept="image/*" hidden>
+                        <label for="imageUpload" class="upload-btn primary" id="uploadBtn">
+                            <i class="fas fa-plus"></i>
+                            选择图片
+                        </label>
+                        <p class="upload-hint">或拖拽图片到此处</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 分析页面 -->
+            <section class="analysis-page" id="analysisPage" style="display: none;">
+                <!-- 左侧悬浮图片 -->
+                <div class="floating-image" id="floatingImage">
+                    <img id="analysisImage" src="#" alt="分析图片">
+                    <button class="change-image-btn" id="changeImageBtn">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                </div>
+
+                <!-- 右侧结果区域 -->
+                <div class="results-container" id="resultsContainer">
+                    <!-- 加载状态 -->
+                    <div class="loading-state" id="loadingState">
+                        <div class="loading-animation">
+                            <div class="loading-spinner"></div>
+                        </div>
+                        <h3>AI 正在分析中...</h3>
+                        <p>正在识别食物种类并计算营养成分</p>
+                    </div>
+
+                    <!-- 分析结果 -->
+                    <div class="analysis-results" id="analysisResults" style="display: none;">
+                        <div class="results-header">
+                            <h2>营养分析结果</h2>
+                            <span class="results-subtitle">每100克可食部分</span>
+                        </div>
+                        <!-- 直接放表格 -->
+                        <div class="nutrition-table-container">
+                            <table class="nutrition-table" id="nutritionTable">
+                                <thead>
+                                    <tr>
+                                        <th>食物</th>
+                                        <th>嘌呤</th>
+                                        <th>胆固醇</th>
+                                        <th>饱和脂肪</th>
+                                        <th>糖</th>
+                                        <th>热量</th>
+                                        <th>蛋白质</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="nutritionTableBody">
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- tab格式的详细建议 -->
+                        <div class="detailed-suggestions">
+                            <h3><i class="fas fa-lightbulb"></i> 详细营养建议</h3>
+                            <div class="suggestion-tabs" id="suggestionTabs">
+                                <button class="tab-btn" data-tab="cholesterol">高胆固醇</button>
+                                <button class="tab-btn" data-tab="fat_loss">减脂</button>
+                                <button class="tab-btn" data-tab="muscle_gain">增肌</button>
+                                <button class="tab-btn" data-tab="diabetes">糖尿病</button>
+                                <button class="tab-btn" data-tab="children">儿童</button>
+                                <button class="tab-btn" data-tab="elderly">老年人</button>
+                                <button class="tab-btn" data-tab="pregnant">孕妇</button>
+                            </div>
+                            <div id="nutritionSuggestions" class="suggestions-content"></div>
+                        </div>
+
+                        <!-- 操作按钮 -->
+                        <div class="action-buttons">
+                            <button class="btn secondary" id="newAnalysisBtn">
+                                <i class="fas fa-plus"></i>
+                                分析新图片
+                            </button>
+                            <button class="btn primary" id="shareBtn">
+                                <i class="fas fa-share-alt"></i>
+                                分享结果
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 错误状态 -->
+                    <div class="error-state" id="errorState" style="display: none;">
+                        <div class="error-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h3>分析失败</h3>
+                        <p id="errorMessage">请检查网络连接或稍后重试</p>
+                        <button class="btn primary" id="retryBtn">
+                            <i class="fas fa-redo"></i>
+                            重试
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- 页脚 -->
+        <footer class="app-footer">
+            <p>© 2024 智能食物营养分析师 | 基于 Google Gemini AI 技术</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

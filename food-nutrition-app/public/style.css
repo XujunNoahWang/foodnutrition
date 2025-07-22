@@ -1,0 +1,717 @@
+/* 全局样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* CSS 变量定义 - 苹果风格 */
+:root {
+    /* 浅色主题 */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f5f5f7;
+    --bg-tertiary: #fbfbfd;
+    --text-primary: #1d1d1f;
+    --text-secondary: #86868b;
+    --text-tertiary: #6e6e73;
+    --accent-blue: #007aff;
+    --accent-blue-hover: #0056cc;
+    --border-light: #d2d2d7;
+    --border-medium: #c7c7cc;
+    --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.15);
+    --radius-small: 8px;
+    --radius-medium: 12px;
+    --radius-large: 16px;
+    --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* 深色主题 */
+[data-theme="dark"] {
+    --bg-primary: #000000;
+    --bg-secondary: #1c1c1e;
+    --bg-tertiary: #2c2c2e;
+    --text-primary: #ffffff;
+    --text-secondary: #98989d;
+    --text-tertiary: #8e8e93;
+    --accent-blue: #0a84ff;
+    --accent-blue-hover: #409cff;
+    --border-light: #38383a;
+    --border-medium: #48484a;
+    --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.3);
+    --shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* 基础样式 */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    transition: var(--transition);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.app-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 头部样式 */
+.app-header {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-light);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: var(--transition);
+}
+
+[data-theme="dark"] .app-header {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-content h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.theme-toggle {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    color: var(--text-secondary);
+}
+
+.theme-toggle:hover {
+    background: var(--border-light);
+    transform: scale(1.05);
+}
+
+/* 主要内容区域 */
+.main-content {
+    flex: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    width: 100%;
+}
+
+/* 上传页面 */
+.upload-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+}
+
+.upload-hero {
+    text-align: center;
+    max-width: 600px;
+}
+
+.upload-icon {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, var(--accent-blue), #5ac8fa);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 2rem;
+    box-shadow: var(--shadow-medium);
+}
+
+.upload-icon i {
+    font-size: 3rem;
+    color: white;
+}
+
+.upload-hero h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.upload-hero p {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+    font-weight: 400;
+}
+
+.upload-area {
+    background: var(--bg-secondary);
+    border: 2px dashed var(--border-medium);
+    border-radius: var(--radius-large);
+    padding: 3rem 2rem;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.upload-area:hover,
+.upload-area.dragover {
+    border-color: var(--accent-blue);
+    background: var(--bg-tertiary);
+    transform: translateY(-2px);
+}
+
+.upload-btn {
+    background: var(--accent-blue);
+    color: white;
+    border: none;
+    border-radius: var(--radius-medium);
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: var(--shadow-light);
+}
+
+.upload-btn:hover {
+    background: var(--accent-blue-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+.upload-hint {
+    margin-top: 1rem;
+    color: var(--text-tertiary);
+    font-size: 0.9rem;
+}
+
+/* 分析页面 */
+.analysis-page {
+    display: grid;
+    grid-template-columns: 540px 1fr;
+    gap: 2rem;
+    min-height: 70vh;
+    padding: 0;
+}
+
+/* 悬浮图片 */
+.floating-image {
+    position: static;
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.floating-image img {
+    width: 520px;
+    height: 340px;
+    max-width: 90vw;
+    max-height: 60vh;
+    object-fit: cover;
+    border-radius: var(--radius-large);
+    box-shadow: none;
+    margin-bottom: 1rem;
+    background: #f0f0f0;
+    transition: width 0.3s, height 0.3s;
+}
+
+.change-image-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    opacity: 0;
+}
+
+.floating-image:hover .change-image-btn {
+    opacity: 1;
+}
+
+.change-image-btn:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: scale(1.1);
+}
+
+/* 结果容器 */
+.results-container {
+    background: var(--bg-primary);
+}
+
+/* 加载状态 */
+.loading-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid var(--border-light);
+    border-top: 4px solid var(--accent-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 2rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-state h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.loading-state p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+/* 分析结果 */
+.analysis-results {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.results-header {
+    margin-bottom: 2rem;
+}
+
+.results-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+}
+
+.results-subtitle {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+/* 营养表格 */
+.nutrition-table-container {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-large);
+    padding: 2.2rem 2rem 2rem 2rem;
+    margin-bottom: 2.2rem;
+    box-shadow: var(--shadow-light);
+    max-width: 900px;
+    margin-left: 0;
+    margin-right: 0;
+}
+.nutrition-table {
+    width: 100%;
+    min-width: 600px;
+    font-size: 1.13rem;
+}
+.nutrition-table th,
+.nutrition-table td {
+    padding: 1.3rem 1rem;
+    font-size: 1.13rem;
+}
+.nutrition-table th:first-child,
+.nutrition-table td:first-child {
+    min-width: 120px;
+    max-width: 200px;
+}
+
+.nutrition-table th {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    padding: 1rem 0.75rem;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.nutrition-table td {
+    padding: 1.2rem 0.7rem;
+    border-bottom: 1px solid var(--border-light);
+    vertical-align: middle;
+    text-align: left;
+    line-height: 1.7;
+}
+
+.nutrition-table tbody tr:hover {
+    background: var(--bg-tertiary);
+}
+
+.nutrition-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.nutrition-table td:first-child {
+    font-weight: 600;
+    color: var(--text-primary);
+    text-align: left;
+    font-size: 1.12rem;
+    padding-left: 1.2rem;
+}
+
+.nutrition-table td:not(:first-child) {
+    text-align: left;
+}
+
+.nutrition-table tr {
+    height: 3.2rem;
+}
+
+/* 营养值样式 */
+.nutrition-value {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    font-weight: 500;
+}
+
+.nutrition-emoji {
+    font-size: 1.1rem;
+}
+
+.nutrition-number {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.nutrition-unit {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* 详细建议 */
+.detailed-suggestions {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-large);
+    padding: 2.2rem 2rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-medium);
+    font-size: 1.08rem;
+    max-width: 900px;
+}
+
+.detailed-suggestions h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.detailed-suggestions i {
+    color: #ff9500;
+}
+
+.suggestions-content {
+    color: var(--text-primary);
+    font-size: 1.08rem;
+    line-height: 2.1;
+    letter-spacing: 0.01em;
+}
+
+.suggestions-content p {
+    margin-bottom: 1.2rem;
+    padding-left: 0.5rem;
+}
+
+.suggestions-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* tab样式 */
+.suggestion-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.2rem;
+    flex-wrap: wrap;
+}
+.tab-btn {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-light);
+    border-radius: 999px;
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    outline: none;
+}
+.tab-btn.active, .tab-btn:focus {
+    background: var(--accent-blue);
+    color: #fff;
+    border-color: var(--accent-blue);
+    box-shadow: var(--shadow-light);
+}
+.tab-btn:hover {
+    background: var(--accent-blue-hover);
+    color: #fff;
+}
+
+/* 按钮样式 */
+.btn {
+    border-radius: 999px;
+    font-size: 1.08rem;
+    padding: 0.85rem 2.2rem;
+    font-weight: 600;
+    box-shadow: var(--shadow-light);
+    transition: var(--transition);
+}
+
+.btn.primary {
+    background: var(--accent-blue);
+    color: #fff;
+}
+
+.btn.primary:hover {
+    background: var(--accent-blue-hover);
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: var(--shadow-medium);
+}
+
+.btn.secondary {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-light);
+}
+
+.btn.secondary:hover {
+    background: var(--bg-tertiary);
+    transform: translateY(-2px) scale(1.04);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+/* 错误状态 */
+.error-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.error-icon {
+    width: 80px;
+    height: 80px;
+    background: #ff3b30;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.error-icon i {
+    font-size: 2rem;
+    color: white;
+}
+
+.error-state h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.error-state p {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+/* 页脚 */
+.app-footer {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-light);
+    padding: 2rem 0;
+    text-align: center;
+    color: var(--text-tertiary);
+    font-size: 0.9rem;
+}
+
+/* 移除人群选择相关样式 */
+.audience-selector-container, .audience-label, .audience-selector { display: none !important; }
+
+/* 响应式设计 */
+@media (max-width: 1100px) {
+    .analysis-page {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+    .nutrition-table-container, .detailed-suggestions {
+        max-width: 100vw;
+        min-width: 0;
+    }
+    .nutrition-table {
+        min-width: 0;
+    }
+    .floating-image img {
+        width: 98vw;
+        height: 220px;
+    }
+}
+@media (max-width: 700px) {
+    .main-content {
+        padding: 0.5rem;
+    }
+    .analysis-page {
+        padding: 0;
+    }
+    .floating-image img {
+        width: 100vw;
+        height: 160px;
+    }
+    .nutrition-table th, .nutrition-table td {
+        padding: 0.7rem 0.3rem;
+        font-size: 0.95rem;
+    }
+    .detailed-suggestions {
+        padding: 1.2rem 0.5rem;
+    }
+}
+@media (max-width: 480px) {
+    .header-content {
+        padding: 0 1rem;
+    }
+    
+    .header-content h1 {
+        font-size: 1.25rem;
+    }
+    
+    .upload-hero h2 {
+        font-size: 1.75rem;
+    }
+    
+    .upload-area {
+        padding: 2rem 1rem;
+    }
+    
+    .nutrition-table th, .nutrition-table td {
+        padding: 0.4rem 0.1rem;
+        font-size: 0.8rem;
+    }
+    
+    .nutrition-value {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+}
+
+.targeted-suggestion-row {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+}
+.targeted-suggestion-col {
+    flex: 1;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-medium);
+    padding: 1rem 1.2rem;
+    box-shadow: var(--shadow-light);
+    min-width: 0;
+}
+.targeted-title {
+    font-weight: 700;
+    font-size: 1.08rem;
+    color: var(--accent-blue);
+    margin-bottom: 0.7rem;
+    letter-spacing: 0.02em;
+}
+.targeted-item {
+    margin-bottom: 0.5rem;
+    font-size: 1.02rem;
+    color: var(--text-primary);
+}
+.targeted-reason {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-left: 0.2em;
+}
+.targeted-empty {
+    color: var(--text-tertiary);
+    font-size: 0.98rem;
+    margin-bottom: 0.5rem;
+}
+.targeted-desc {
+    font-size: 1.05rem;
+    color: var(--accent-blue);
+    margin-bottom: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+}
+.suggestion-tabs .tab-btn.active {
+    background: var(--accent-blue);
+    color: #fff;
+    border-color: var(--accent-blue);
+    box-shadow: var(--shadow-light);
+}
+@media (max-width: 900px) {
+    .targeted-suggestion-row {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
