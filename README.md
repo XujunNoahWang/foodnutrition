@@ -1,4 +1,6 @@
-# Food Nutrition Analysis App
+# 智能食物营养分析师
+
+版本：0.1.2
 
 一个基于AI的食物营养分析应用，可以识别食物图片并提供详细的营养信息分析。
 
@@ -145,7 +147,9 @@ python app.py
 
 ## 版本历史
 
-- **v0.1.0**: 初始版本，支持基本的食物营养分析功能
+- v0.1.2：优化表格字体层级与视觉层次
+- v0.1.1：Restructure project to follow Python best practices
+- v0.1.0：Food Nutrition Analysis App with improved startup script
 
 ## 贡献指南
 

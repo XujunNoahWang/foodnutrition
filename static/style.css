@@ -331,7 +331,7 @@ body {
 }
 
 .results-header h2 {
-    font-size: 2rem;
+    font-size: 2.4rem;
     font-weight: 700;
     color: var(--text-primary);
     margin-bottom: 0.5rem;
@@ -357,12 +357,12 @@ body {
 .nutrition-table {
     width: 100%;
     min-width: 600px;
-    font-size: 1.13rem;
+    font-size: 0.9rem;
 }
 .nutrition-table th,
 .nutrition-table td {
     padding: 1.3rem 1rem;
-    font-size: 1.13rem;
+    font-size: 0.9rem;
 }
 .nutrition-table th:first-child,
 .nutrition-table td:first-child {
@@ -376,7 +376,7 @@ body {
     padding: 1rem 0.75rem;
     text-align: center;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 1rem;
     border-bottom: 1px solid var(--border-light);
 }
 
@@ -397,10 +397,10 @@ body {
 }
 
 .nutrition-table td:first-child {
-    font-weight: 600;
+    font-weight: 400;
     color: var(--text-primary);
     text-align: left;
-    font-size: 1.12rem;
+    font-size: 0.95rem;
     padding-left: 1.2rem;
 }
 
@@ -418,20 +418,21 @@ body {
     align-items: center;
     justify-content: flex-start;
     gap: 0.5rem;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 .nutrition-emoji {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
 }
 
 .nutrition-number {
-    font-weight: 600;
+    font-weight: 400;
     color: var(--text-primary);
+    font-size: 0.9rem;
 }
 
 .nutrition-unit {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--text-secondary);
 }
 
@@ -626,7 +627,7 @@ body {
     }
     .nutrition-table th, .nutrition-table td {
         padding: 0.7rem 0.3rem;
-        font-size: 0.95rem;
+        font-size: 0.8rem;
     }
     .detailed-suggestions {
         padding: 1.2rem 0.5rem;
@@ -651,7 +652,7 @@ body {
     
     .nutrition-table th, .nutrition-table td {
         padding: 0.4rem 0.1rem;
-        font-size: 0.8rem;
+        font-size: 0.7rem;
     }
     
     .nutrition-value {
